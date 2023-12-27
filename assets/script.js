@@ -1,18 +1,18 @@
 const slides = [
   {
-    image: "C:/Users/Ken/Downloads/Java-script_open-main/Java-script_open-main/assets/images/slideshow/slide1.jpg",
+    image: "assets/images/slideshow/slide1.jpg",
     tagLine: "Impressions tous formats <span>en boutique et en ligne</span>",
   },
   {
-    image: "C:/Users/Ken/Downloads/Java-script_open-main/Java-script_open-main/assets/images/slideshow/slide2.jpg",
+    image: "assets/images/slideshow/slide2.jpg",
     tagLine: "Tirages haute définition grand format <span>pour vos bureaux et events</span>",
   },
   {
-    image: "C:/Users/Ken/Downloads/Java-script_open-main/Java-script_open-main/assets/images/slideshow/slide3.jpg",
+    image: "assets/images/slideshow/slide3.jpg",
     tagLine: "Grand choix de couleurs <span>de CMJN aux pantones</span>",
   },
   {
-    image: "C:/Users/Ken/Downloads/Java-script_open-main/Java-script_open-main/assets/images/slideshow/slide4.png",
+    image: "assets/images/slideshow/slide4.png",
     tagLine: "Autocollants <span>avec découpe laser sur mesure</span>",
   },
 ];
@@ -55,10 +55,3 @@ function showPrevSlide() {
 document.addEventListener("DOMContentLoaded", updateSlide); // Update slide on page load
 nextButton.addEventListener("click", showNextSlide);
 prevButton.addEventListener("click", showPrevSlide);
-document.addEventListener("keydown", function (e) {
-  if (e.key === "ArrowRight") {
-    showNextSlide();
-  } else if (e.key === "ArrowLeft") {
-    showPrevSlide();
-  }
-});
