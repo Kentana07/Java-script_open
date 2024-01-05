@@ -5,7 +5,8 @@ const slides = [
   },
   {
     image: "assets/images/slideshow/slide2.jpg",
-    tagLine: "Tirages haute définition grand format <span>pour vos bureaux et events</span>",
+    tagLine:
+      "Tirages haute définition grand format <span>pour vos bureaux et events</span>",
   },
   {
     image: "assets/images/slideshow/slide3.jpg",
@@ -29,17 +30,31 @@ let currentIndex = 0;
 // Set the initial image and tagline
 updateSlide();
 
-function updateSlide() {
-  imageContainer.src = slides[currentIndex].image;
-  tagLineElement.innerHTML = slides[currentIndex].tagLine;
-  updateDots();
-}
+// Event listeners
+document.addEventListener("DOMContentLoaded", updateSlide); // Update slide on page load
+
+nextButton.addEventListener("click", function () {
+  showNextSlide();
+  console.log('Bouton "Next" cliqué. Nouvel index :', currentIndex);
+});
+
+prevButton.addEventListener("click", function () {
+  showPrevSlide();
+  console.log('Bouton "Prev" cliqué. Nouvel index :', currentIndex);
+});
 
 function updateDots() {
   dots.forEach((dot, index) => {
     dot.classList.toggle("dot_selected", index === currentIndex);
   });
 }
+function updateSlide() {
+  imageContainer.src = slides[currentIndex].image;
+  tagLineElement.innerHTML = slides[currentIndex].tagLine;
+  updateDots();
+}
+
+
 
 function showNextSlide() {
   currentIndex = (currentIndex + 1) % slides.length;
@@ -50,8 +65,3 @@ function showPrevSlide() {
   currentIndex = (currentIndex - 1 + slides.length) % slides.length;
   updateSlide();
 }
-
-// Event listeners for navigation
-document.addEventListener("DOMContentLoaded", updateSlide); // Update slide on page load
-nextButton.addEventListener("click", showNextSlide);
-prevButton.addEventListener("click", showPrevSlide);
