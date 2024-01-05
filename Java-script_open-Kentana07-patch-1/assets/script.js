@@ -5,8 +5,7 @@ const slides = [
   },
   {
     image: "assets/images/slideshow/slide2.jpg",
-    tagLine:
-      "Tirages haute définition grand format <span>pour vos bureaux et events</span>",
+    tagLine: "Tirages haute définition grand format <span>pour vos bureaux et events</span>",
   },
   {
     image: "assets/images/slideshow/slide3.jpg",
@@ -27,34 +26,34 @@ const prevButton = banner.querySelector(".arrow_left");
 
 let currentIndex = 0;
 
-// Set the initial image and tagline
+// Event listeners
+
+nextButton.addEventListener("mousedown", function (event) {
+  // Vérifie si le clic a été effectué avec le bouton droit ou gauche (button === 2)
+  if (event.button === 0) {
+    // Bouton gauche
+    showNextSlide();
+    console.log('Bouton "Next" cliqué avec le bouton gauche. Nouvel index :', currentIndex);
+  } else if (event.button === 2) {
+    // Bouton droit
+    console.log('Bouton "Next" cliqué avec le bouton droit. Aucune action.');
+  }
+});
+document.addEventListener("DOMContentLoaded", updateSlide);
+// Définir l'image initiale et le tagline
 updateSlide();
 
-// Event listeners
-document.addEventListener("DOMContentLoaded", updateSlide); // Update slide on page load
-
-nextButton.addEventListener("click", function () {
-  showNextSlide();
-  console.log('Bouton "Next" cliqué. Nouvel index :', currentIndex);
+prevButton.addEventListener("mousedown", function (event) {
+  // Vérifie si le clic a été effectué avec le bouton droit ou gauche (button === 2)
+  if (event.button === 0) {
+    // Bouton gauche
+    showPrevSlide();
+    console.log('Bouton "Prev" cliqué avec le bouton gauche. Nouvel index :', currentIndex);
+  } else if (event.button === 2) {
+    // Bouton droit
+    console.log('Bouton "Prev" cliqué avec le bouton droit. Aucune action.');
+  }
 });
-
-prevButton.addEventListener("click", function () {
-  showPrevSlide();
-  console.log('Bouton "Prev" cliqué. Nouvel index :', currentIndex);
-});
-
-function updateDots() {
-  dots.forEach((dot, index) => {
-    dot.classList.toggle("dot_selected", index === currentIndex);
-  });
-}
-function updateSlide() {
-  imageContainer.src = slides[currentIndex].image;
-  tagLineElement.innerHTML = slides[currentIndex].tagLine;
-  updateDots();
-}
-
-
 
 function showNextSlide() {
   currentIndex = (currentIndex + 1) % slides.length;
@@ -65,3 +64,16 @@ function showPrevSlide() {
   currentIndex = (currentIndex - 1 + slides.length) % slides.length;
   updateSlide();
 }
+function updateSlide() {
+  imageContainer.src = slides[currentIndex].image;
+  tagLineElement.innerHTML = slides[currentIndex].tagLine;
+  updateDots();
+}
+
+function updateDots() {
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("dot_selected", index === currentIndex);
+  });
+}
+
+
