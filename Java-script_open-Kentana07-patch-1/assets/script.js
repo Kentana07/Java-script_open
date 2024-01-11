@@ -55,15 +55,6 @@ prevButton.addEventListener("mousedown", function (event) {
   }
 });
 
-function showNextSlide() {
-  currentIndex = (currentIndex + 1) % slides.length;
-  updateSlide();
-}
-
-function showPrevSlide() {
-  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-  updateSlide();
-}
 function updateSlide() {
   imageContainer.src = slides[currentIndex].image;
   tagLineElement.innerHTML = slides[currentIndex].tagLine;
@@ -76,4 +67,12 @@ function updateDots() {
   });
 }
 
+function showNextSlide() {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateSlide();
+}
 
+function showPrevSlide() {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  updateSlide();
+}
