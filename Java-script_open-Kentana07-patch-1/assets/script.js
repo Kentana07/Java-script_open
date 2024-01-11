@@ -26,8 +26,10 @@ const prevButton = banner.querySelector(".arrow_left");
 
 let currentIndex = 0;
 
-// Event listeners
+// Définir l'image initiale et le tagline
+document.addEventListener("DOMContentLoaded", updateSlide);
 
+// Event listeners
 nextButton.addEventListener("mousedown", function (event) {
   // Vérifie si le clic a été effectué avec le bouton droit ou gauche (button === 2)
   if (event.button === 0) {
@@ -39,10 +41,6 @@ nextButton.addEventListener("mousedown", function (event) {
     console.log('Bouton "Next" cliqué avec le bouton droit. Aucune action.');
   }
 });
-document.addEventListener("DOMContentLoaded", updateSlide);
-// Définir l'image initiale et le tagline
-updateSlide();
-
 prevButton.addEventListener("mousedown", function (event) {
   // Vérifie si le clic a été effectué avec le bouton droit ou gauche (button === 2)
   if (event.button === 0) {
@@ -55,24 +53,21 @@ prevButton.addEventListener("mousedown", function (event) {
   }
 });
 
+function showNextSlide() {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateSlide();
+}
+function showPrevSlide() {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  updateSlide();
+}
 function updateSlide() {
   imageContainer.src = slides[currentIndex].image;
   tagLineElement.innerHTML = slides[currentIndex].tagLine;
   updateDots();
 }
-
 function updateDots() {
   dots.forEach((dot, index) => {
     dot.classList.toggle("dot_selected", index === currentIndex);
   });
-}
-
-function showNextSlide() {
-  currentIndex = (currentIndex + 1) % slides.length;
-  updateSlide();
-}
-
-function showPrevSlide() {
-  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-  updateSlide();
 }
